@@ -1,0 +1,20 @@
+@(title: String)(implicit request: RequestHeader)
+@main(title) {
+<div class="main-page-div">
+
+    <div class="content-div">
+        <div class="video-div">
+        <!--video autoplay muted color="#FFFFFF" id="bgvid" loop>
+            <source src="@routes.Assets.at("videos/bg1.mp4")" type="video/mp4">
+        </video-->
+            </div>
+        <div class="main-page-block">
+            <div class="analyzer">
+                <h3>ANALYZER</h3>
+            </div>
+            <a href="@controllers.dashboard.routes.MainController.index()" class="btn btn-dashboard-home btn-primary">Go to dashboard</a>
+        </div>
+    </div>
+    </div>
+</div>
+}

@@ -1,0 +1,22 @@
+@(title: String, clientForm: Form[Client])(implicit request: RequestHeader, messages: Messages)
+@import b3.vertical.fieldConstructor
+
+@main(title) {
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+
+    @b3.form(controllers.dashboard.routes.MainController.create) {
+        @b3.text( clientForm("name"), '_label -> "Name", 'placeholder -> "client's branch name" )
+        @{
+        val atses = Seq("tbe"->"Taleo Business Edition","tee"->"Taleo Enterprise Edition","hrs"->"HRsmart")
+        b3.select( clientForm("ats"), options = atses, '_label -> "Select an ATS" )
+        }
+        @b3.text( clientForm("displayName"), '_label -> "Display Name", 'placeholder -> "" )
+        @b3.text( clientForm("feedId"), '_label -> "Feed Id", 'placeholder -> "" )
+        @b3.text( clientForm("sourceId"), '_label -> "Source Id", 'placeholder -> "" )
+        @b3.text( clientForm("host"), '_label -> "Host", 'placeholder -> "http://host.mobolt.com" )
+        @b3.submit('class -> "btn btn-primary"){ Create }
+    }
+    </div>
+</div>
+}

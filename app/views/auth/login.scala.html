@@ -1,0 +1,31 @@
+@(loginForm: Form[Option[Account]])(implicit request: RequestHeader, messages: Messages)
+@import b3.vertical.fieldConstructor
+
+@main("Login") {
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+
+  @loginForm.globalError.map { error =>
+    <p class="error">
+      @error.message
+    </p>
+  }
+  @request.flash.get("success").map { message =>
+    <p class="success">
+      @message
+    </p>
+  }
+    <div>
+    <h3>Sign In</h3><br>
+    </div>
+      @b3.form(routes.Application.authenticate) {
+        @b3.email(loginForm("email"), '_label -> "Email", 'placeholder -> "example@mail.com" )
+        @b3.password( loginForm("password"), '_label -> "Password", 'placeholder -> "Password" )
+        @b3.checkbox( loginForm("remember"), '_text -> "Remember me", 'value -> true )
+        @b3.submit('class -> "btn btn-primary"){ Log In }
+      }
+  </div>
+
+</div>
+}

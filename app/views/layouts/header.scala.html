@@ -1,0 +1,24 @@
+@()(implicit request: RequestHeader)
+<div class="header">
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <div class="logo-max">
+                    <a class="navbar-brand" href="@routes.Application.index()">
+                        <img alt="logo" class="logo" src="@routes.Assets.at("images/logo.png")">
+                    </a>
+                </div>
+
+            </div>
+            @request.cookies.get("PLAY2AUTH_SESS_ID").map { u =>
+            <div class="home-auth"><a href="@routes.Application.logout()" class="btn btn-auth">Logout</a></div>
+}.getOrElse {
+
+            <div class="home-auth">
+                <a href="@routes.Application.login()" class="btn btn-auth">Log In</a>
+                <a href="@routes.Application.newUser()" class="btn btn-auth">Sign Up</a>
+            </div>
+            }
+        </div>
+    </nav>
+</div>

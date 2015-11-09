@@ -1,0 +1,42 @@
+@(title: String, clients: Seq[models.Client])(implicit request: RequestHeader)
+@main(title) {
+<script>
+$(document).ready(function()
+{
+$('#example').dataTable();
+});
+</script>
+
+<div class="dashboard-top">
+<h4>List of added clients</h4>
+    <div class="create-client-button"><a href="@controllers.dashboard.routes.MainController.createClient()" class="btn btn-primary">Create a new client</a></div>
+</div>
+
+<div class="">
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>ATS</th>
+            <th>Display Name</th>
+            <th>Feed Id</th>
+            <th>Source Id</th>
+            <th>Host</th>
+        </tr>
+        </thead>
+
+        @for(client <- clients) {
+        <tbody>
+        <tr>
+            <td>@client.name</td>
+            <td>@client.ats</td>
+            <td>@client.displayName</td>
+            <td>@client.feedId</td>
+            <td>@client.sourceId</td>
+            <td>@client.host</td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+}

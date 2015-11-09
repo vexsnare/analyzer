@@ -1,0 +1,8 @@
+@(request: RequestHeader)
+
+@request.flash.get("error").map { msg =>
+<div class="alert alert-danger alert-error">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Error!</strong> @msg
+</div>
+}

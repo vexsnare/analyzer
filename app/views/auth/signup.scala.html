@@ -1,0 +1,31 @@
+@(signUpForm: Form[Account])(implicit request: RequestHeader, messages: Messages)
+@import b3.vertical.fieldConstructor
+
+@main("SignUp") {
+<div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+
+        @signUpForm.globalError.map { error =>
+        <p class="error">
+            @error.message
+        </p>
+        }
+        @request.flash.get("success").map { message =>
+        <p class="success">
+            @message
+        </p>
+        }
+        <div>
+            <h3>Sign Up</h3><br>
+        </div>
+        @b3.form(routes.Application.signUp) {
+        @b3.text(signUpForm("name"), '_label -> "Full Name", 'placeholder -> "First & Last Name")
+        @b3.email(signUpForm("email"), '_label -> "Email", 'placeholder -> "example@mail.com" )
+        @b3.password( signUpForm("password"), '_label -> "Password", 'placeholder -> "Password" )
+        @b3.password( signUpForm("cPassword"), '_label -> "Confirm Password", 'placeholder -> "Confirm Password" )
+        @b3.submit('class -> "btn btn-primary"){ Sign Up }
+        }
+    </div>
+
+</div>
+}
